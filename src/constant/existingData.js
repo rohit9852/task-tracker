@@ -6,4 +6,4 @@ export const data = [
     {"id":5,"name": "Test Task #5", "date": "12/05/2012", "assigned": "John Doe" },
     {"id":6,"name": "Test Task #6", "date": "12/06/2012", "assigned": "John Doe" },
     {"id":7,"name": "Test Task #7", "date": "12/07/2012", "assigned": "John Doe" }
-   ]
+]

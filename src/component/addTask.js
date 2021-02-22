@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';  
+import "react-toastify/dist/ReactToastify.min.css";
 import './addTask.css';
 
 export default function({addTask}) {
@@ -6,6 +8,7 @@ export default function({addTask}) {
     const [ userInput, setUserInput ] = useState('');
     const [ date, setDate ] = useState('');
     const [ userAssigned, setUserAssigned ] = useState('');
+    const [ error, setError ]  = useState('')
 
     const handleCAssigeehange = (e) => {
         setUserAssigned(e.currentTarget.value)
@@ -19,11 +22,16 @@ export default function({addTask}) {
         setDate(e.currentTarget.value);
     }
 
-
+    toast.configure()
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(userInput!=null && date!= null && userAssigned!=null) {
+        if(userInput.length!= 0 && date.length!= 0 && userAssigned.length!=0) {
         addTask(userInput,date,userAssigned);
+        toast('Task Added Succesfully',{
+            position: toast.POSITION.TOP_CENTER
+        })
+        } else {
+            setError('All data are required.')
         }
         setUserInput("");
         setDate('');
@@ -42,6 +50,7 @@ export default function({addTask}) {
                 <label>Assigned To</label>
                 <input value={userAssigned} type="text" onChange={handleCAssigeehange} className='assignee'/>
                 <button className='btn'>Submit</button>
+                <p className='errMessage'>{error}</p>
             </form>
         </div>
     )
